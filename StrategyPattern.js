@@ -50,10 +50,11 @@ class LinkedInLogin extends LoginMethod {
 
 class User {
     constructor() {
+        // Set the default login method
         this.loginMethod = new LoginMethod();
     }
-    setLoginMethod(loginMethod) {
-        this.loginMethod = loginMethod;
+    setLoginMethod(altLoginMethod) {
+        this.loginMethod = altLoginMethod;
     }
     performLogin() {
         this.loginMethod.login();
