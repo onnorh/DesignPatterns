@@ -19,13 +19,13 @@ class LoginMethod(object):
     def login(self):
         print "Please choose a login method"
 
-class FacebookLogin(object):
+class FacebookLogin(LoginMethod):
     def login(self):
         print("Logging with Facebook Account...\n"
               "Redirected to Facebook Page for authorisation\n"
               "Successfully logged on")
 
-class GoogleLogin(object):
+class GoogleLogin(LoginMethod):
     def login(self):
         print("Logging with Google Account...\n"
               "Redirected to Google Page for authorisation\n"
@@ -33,7 +33,7 @@ class GoogleLogin(object):
               "Mobile verification successful\n"
               "Successfully logged on")
 
-class LinkedInLogin(object):
+class LinkedInLogin(LoginMethod):
     def login(self):
         print("Logging with LinkedIn Account...\n"
               "Redirected to LinkedIn for authorisation\n"

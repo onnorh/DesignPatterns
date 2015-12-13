@@ -47,9 +47,10 @@ class Subject {
 }
 
 class Observer {
-    constructor() {
+    constructor(name) {
         this.newPosts = [];
         this.isOnline = false;
+        this.name = name;
     }
     update() {
         // When notification received, update something
@@ -99,7 +100,7 @@ class Follower extends Observer {
         this.seen();
     }
     display() {
-        console.log(this.newPosts);
+        console.log(this.name + ":" + JSON.stringify(this.newPosts));
         this.seen();
     }
 }
@@ -107,8 +108,8 @@ class Follower extends Observer {
 // Initiate a really popular woman
 let chloe = new User("Chloe");
 // Initiate the Followers
-let tom = new Follower();
-let jack = new Follower();
+let tom = new Follower("Tom");
+let jack = new Follower("Jack");
 
 // Let the guys follow Chloe
 chloe.addObserver(tom);
@@ -129,6 +130,6 @@ tom.setOnline(true);
 console.log("Now Chloe creates another post and both guys receive it");
 chloe.createPost("http://www.ootd.com/ootd.png", "#ootd");
 
-console.log("Chloe finds Tom creepy, removes him");
+console.log("Chloe finds Tom creepy, removes him, then creates a new post");
 chloe.removeObserver(tom);
 chloe.createPost("http://www.ootd2.com/ootd2.png", "#ootd");
