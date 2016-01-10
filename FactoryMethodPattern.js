@@ -8,9 +8,14 @@
   * Example - The Super Administrator is considered the Creator in the application
   * He/she is able to create an administrator account, an editor account or just
   * a normal user account
+  *
+  * In this example I use npm:prompt to get user input
   */
 
+var prompt = require("prompt");
+
 class SuperAdministrator {
+    // SuperAdministrator provides an interface
     createUser() {
 
     }
@@ -56,6 +61,25 @@ class Editor extends User {
     }
 }
 
-let adminCreator = new AdminCreator();
-let adminUser = adminCreator.createUser();
-console.log(adminUser.getPrivileges());
+prompt.start();
+
+let user;
+
+prompt.get([{
+    name: "user_type",
+    description: `What kind of user do you wish to create? ["admin", "editor", "normal"]`,
+    required: true
+}], function(err, result) {
+    let userType = result.user_type;
+    let userFactory;
+    if (userType == "admin") {
+        userFactory = new AdminCreator();
+    } else if (userType == "editor") {
+        userFactory = new EditorCreator();
+    } else {
+        userFactory = new UserCreator();
+    }
+
+    user = userFactory.createUser();
+    console.log(user.getPrivileges());
+})

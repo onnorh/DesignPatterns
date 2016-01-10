@@ -1,0 +1,26 @@
+{
+  "name": "designpatterns",
+  "version": "1.0.0",
+  "description": "python and js es6 implementations of design patterns ",
+  "main": "DecoratorPattern.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenvisuals/DesignPatterns.git"
+  },
+  "keywords": [
+    "design",
+    "patterns"
+  ],
+  "author": "Chee Zhiquan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zenvisuals/DesignPatterns/issues"
+  },
+  "homepage": "https://github.com/zenvisuals/DesignPatterns#readme",
+  "dependencies": {
+    "prompt": "^0.2.14"
+  }
+}
