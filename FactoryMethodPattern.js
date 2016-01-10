@@ -42,7 +42,11 @@ class UserCreator extends SuperAdministrator {
 class User {
     constructor(privileges) {
         //Default CanView
-        this.privileges = ["CanView"].concat(privileges)
+        this.privileges = ["CanView"];
+        if(privileges) {
+            this.privileges = this.privileges.concat(privileges)
+        }
+
     }
     getPrivileges() {
         return this.privileges;
@@ -66,11 +70,11 @@ prompt.start();
 let user;
 
 prompt.get([{
-    name: "user_type",
+    name: "userType",
     description: `What kind of user do you wish to create? ["admin", "editor", "normal"]`,
     required: true
 }], function(err, result) {
-    let userType = result.user_type;
+    let userType = result.userType;
     let userFactory;
     if (userType == "admin") {
         userFactory = new AdminCreator();
