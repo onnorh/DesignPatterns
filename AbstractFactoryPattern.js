@@ -20,8 +20,24 @@ function forceRequiredMethods(_class, methods) {
 }
 
 class Website {
-    takeOrder() {
+    placeOrder(region) {
+        let shop = "";
+        if(region === "europe") {
+            shop = new EuropeanShop(new EuropeanWarehouse());
+        } else if(region === "asia") {
+            shop = new AsianShop(new AsianWarehouse());
+        }
+        return shop;
+    }
 
+    getPackage(region) {
+        let customerPackage = this.placeOrder(region);
+        customerPackage.fetchItem();
+        customerPackage.checkItem();
+        customerPackage.cleanItem();
+        customerPackage.packageItem();
+
+        return customerPackage;
     }
 }
 
@@ -32,6 +48,21 @@ class Shop {
         }
         let _class = this;
         forceRequiredMethods(_class, ["fetchItem"]);
+    }
+
+    checkItem() {
+        console.log(`Checking ${this.sunglass.getType()} for any defects`);
+        console.log(`Checking ${this.dress.getType()} for any defects and hide it`);
+    }
+
+    cleanItem() {
+        console.log(`Cleaning up ${this.sunglass.getType()} using dettol.`);
+        console.log(`Cleaning up ${this.dress.getType()} using bleach.`);
+    }
+
+    packageItem() {
+        console.log(`Package ${this.sunglass.getType()} nicely`);
+        console.log(`Package ${this.dress.getType()} nicely`);
     }
 }
 
@@ -45,21 +76,22 @@ class EuropeanShop extends Shop {
 
     fetchItem() {
         console.log("Fetching item from the European Warehouse");
-        let sunglass = this.warehouse.getSunglass();
-        let dress = this.warehouse.getDress();
+        this.sunglass = this.warehouse.getSunglass();
+        this.dress = this.warehouse.getDress();
     }
 }
 
 class AsianShop extends Shop {
     constructor(warehouse) {
+        super();
         this.warehouse = warehouse;
         this.region = "Asia";
     }
 
     fetchItem() {
         console.log("Fetching item from the Asian Warehouse");
-        let sunglass = this.warehouse.getSunglass();
-        let dress = this.warehouse.getDress();
+        this.sunglass = this.warehouse.getSunglass();
+        this.dress = this.warehouse.getDress();
     }
 }
 
@@ -92,35 +124,48 @@ class AsianWarehouse extends Warehouse {
 }
 
 class Sunglass {
-
+    constructor() {
+        if(new.target === Sunglass) {
+            throw new TypeError("This is an abstract class");
+        }
+        let _class = this;
+        forceRequiredMethods(_class, ["getType"])
+    }
 }
 
 class EuropeanSunglass {
-    put() {
-        console.log("Putting on European Sunglass");
+    getType() {
+        return "European Sunglass";
     }
 }
 
 class AsianSunglass {
-    put() {
-        console.log("Putting on Asian Sunglass");
+    getType() {
+        return "Asian Sunglass";
     }
 }
 
 class LimitedEditionDress {
-
+    constructor() {
+        if(new.target === LimitedEditionDress) {
+            throw new TypeError("This is an abstract class");
+        }
+        let _class = this;
+        forceRequiredMethods(_class, ["getType"])
+    }
 }
 
 class EuropeanLimitedEditionDress {
-    wear() {
-        console.log("Wearing European Dress");
+    getType() {
+        return "European Really Expensive Limited Edition Dress";
     }
 }
 
 class AsianLimitedEditionDress {
-    wear() {
-        console.log("Wearing Asian Dress");
+    getType() {
+        return "Asian Really Limited Expensive Edition Dress";
     }
 }
 
-let eShop = new EuropeanShop();
+let website = new Website();
+website.getPackage("asia");
