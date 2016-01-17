@@ -1,5 +1,5 @@
 # Design Patterns
-Python and Javascript Implementation to the design patterns, using social network as the subject
+Python and Javascript Implementation to the design patterns
 
 Currently learning software design patterns through reading books and online resources, I will be writing codes that implements these design patterns using my own interpretation.
 
