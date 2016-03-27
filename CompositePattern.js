@@ -64,5 +64,5 @@ console.log("Teddy gets married and gets a son, Paul");
 var paul = new Person("Paul", 1);
 ted.registerChild(paul);
 
-console.log("Now the hierarcy gets even bigger");
+console.log("Now the hierarchy gets even bigger");
 joe.listDescendents();
