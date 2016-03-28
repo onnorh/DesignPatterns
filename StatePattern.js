@@ -95,7 +95,7 @@ class HasCoin extends State {
 	}
 
 	turnKnob() {
-		console.log("Checking if have candy or not");
+		console.log("Checking if the machine still have any candies left");
 		if (this.dispenser.candyCount > 0) {
 			this.dispenser.setState(this.dispenser.getHasCandy());
 		} else {
