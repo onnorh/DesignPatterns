@@ -15,8 +15,8 @@
   * View - It is the display to present the data.
   *
   * Example - An MP3 Player is a good example that uses the MVC pattern, the view is 
-  * the interface. When buttons are placed, the controller will be activated and will
-  * call the model to manipulate data and state and then update the view accordingly.
+  * the interface. When buttons are pressed, the controller will be activated and will
+  * call the model to manipulate data, state and then update the view accordingly.
   *
   */
 
@@ -47,7 +47,7 @@ class PlayerModel {
 		this.volume = volume;
 		this.updateViews();
 	}
-	getVolume(volume) {
+	getVolume() {
 		return this.volume;
 	}
 	setSong(song) {
